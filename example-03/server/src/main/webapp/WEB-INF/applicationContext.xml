@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <jaxrs:server id="service" address="/service">
+        <jaxrs:serviceBeans>
+            <ref bean="bookStore"/>
+        </jaxrs:serviceBeans>
+        <jaxrs:providers>
+            <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/>
+        </jaxrs:providers>
+    </jaxrs:server>
+
+    <bean id="bookStore"
+          class="com.nexse.swat.tutorial.mvn.example03.srv.InMemoryBookStore">
+        <property name="bookMap">
+            <util:map>
+                <entry key="1" value-ref="book01"/>
+                <entry key="2" value-ref="book02"/>
+                <entry key="3" value-ref="book03"/>
+                <entry key="4" value-ref="book04"/>
+            </util:map>
+        </property>
+    </bean>
+
+    <bean id="book01" class="com.nexse.swat.tutorial.mvn.example03.Book"
+          p:id="1"
+          p:author="Douglas Adams"
+          p:title="The Hitchhiker's Guide to the Galaxy"/>
+
+    <bean id="book02" class="com.nexse.swat.tutorial.mvn.example03.Book"
+          p:id="2"
+          p:author="Douglas Adams"
+          p:title="The Restaurant at the End of the Universe"/>
+
+    <bean id="book03" class="com.nexse.swat.tutorial.mvn.example03.Book"
+          p:id="3"
+          p:author="Douglas Adams"
+          p:title="Life, the Universe and Everything"/>
+
+    <bean id="book04" class="com.nexse.swat.tutorial.mvn.example03.Book"
+          p:id="4"
+          p:author="Douglas Adams"
+          p:title="So Long, and Thanks For All the Fish"/>
+
+</beans>
