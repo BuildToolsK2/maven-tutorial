@@ -14,6 +14,17 @@
     <artifactId>client</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>Nexse SWAT Team - Maven Tutorial - Example 03 - Client</name>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.nexse.swat.tutorial.mvn.example03</groupId>
+                <artifactId>bookstore-platform</artifactId>
+                <type>pom</type>
+                <version>1.0.0-SNAPSHOT</version>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>com.nexse.swat.tutorial.mvn.example03</groupId>
